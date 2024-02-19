@@ -1,2 +1,4 @@
-package designPattern;public class Singleton {
+package designPattern;
+
+public class Singleton {
 }
