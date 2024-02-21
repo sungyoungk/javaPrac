@@ -1,0 +1,11 @@
+출처 : 
+https://somuch.medium.com/cs-memory-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC-cec02f6c0bef
+
+https://velog.io/@sean2337/%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%8C%80%ED%99%94%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%84%93%EA%B3%A0-%EC%96%95%EC%9D%80-CS-%EC%A7%80%EC%8B%9D-%EB%A9%94%EB%AA%A8%EB%A6%AC
+
+https://somuch.medium.com/cs-memory-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC-cec02f6c0bef
+
+[메모리 개념]
+
+ㅁ 메모리 구조
+ ㅇ 코드영역 > 데이터 영역 > 힙 영역, 스택 영역 으로 이루어져있음
