@@ -16,7 +16,11 @@ public class Singleton {
         Singleton a = Singleton.getInstance();
         Singleton b = Singleton.getInstance();
 
+        Singleton c = new Singleton();
+
+
         System.out.println("a == b? " + "" + (a == b));
+        System.out.println("a == b ==c ? " + "" + (a == b));
 
     }
 
