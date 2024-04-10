@@ -169,7 +169,7 @@ public class StringCheck {
 
         String string = "hi";
         CharSequence cs = new StringBuilder(string);
-        cs.
+
 
     }
 
