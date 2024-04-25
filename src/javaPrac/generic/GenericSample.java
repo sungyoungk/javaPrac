@@ -3,7 +3,28 @@ package javaPrac.generic;
 public class GenericSample {
     public static void main(String[] args) {
         GenericSample sample = new GenericSample();
-        sample.checkCastingDTO();
+        // sample.checkCastingDTO();
+        sample.checkGenericDTO();
+    }
+
+    public void checkGenericDTO() {
+        CastingGenericDTO<String> dto1 = new CastingGenericDTO<String>();
+        dto1.setObject(new String());
+
+        CastingGenericDTO<StringBuffer> dto2 = new CastingGenericDTO<StringBuffer>();
+        dto2.setObject(new StringBuffer());
+
+        CastingGenericDTO<StringBuilder> dto3 = new CastingGenericDTO<StringBuilder>();
+        dto3.setObject(new StringBuilder());
+
+
+        String temp1 = dto1.getObject();
+        StringBuffer temp2 = dto2.getObject();
+        StringBuilder temp3 = dto3.getObject();
+
+        System.out.println(temp1 instanceof String);
+        System.out.println(temp2 instanceof StringBuffer);
+        System.out.println(temp3 instanceof StringBuilder);
     }
 
     public void checkCastingDTO() {
@@ -29,7 +50,7 @@ public class GenericSample {
             System.out.println("StringBuffer");
         }
     }
-
+/*
     public void checkGenericDTO() {
         CastingDTO<String> dto1 = new CastingDTO<>();
         dto1.setObject(new String());
@@ -42,4 +63,6 @@ public class GenericSample {
         StringBuffer tmp2 = dto2.getObject();
         StringBuilder temp2 = dto3.getObject();
     }
+    */
+
 }
