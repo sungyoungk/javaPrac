@@ -3,21 +3,20 @@ package javaPrac.generic;
 public class GenericWildcardSample {
     public static void main(String[] args) {
         GenericWildcardSample sample = new GenericWildcardSample();
-        sample.callGenericMethod();
+
+        WildcardGeneric<Car> wildcard = new WildcardGeneric<Car>();
+
+        sample.callGenericMethod(wildcard, new Car("Mustang"), new Bus("1690"));
 
 
 
     }
 
-    public <T> void genericMethod(WildcardGeneric<T> c, T addValue) {
+    public <S, T extends Car> void callGenericMethod(WildcardGeneric<T> c, T addValue, S another) {
         c.setWildcard(addValue);
         T value = c.getWildcard();
-        System.out.println(value);
-    }
+        c.setWildcard(value);
 
-    public void callGenericMethod() {
-        WildcardGeneric<String> c = new WildcardGeneric<>();
-        genericMethod(c, "data");
     }
 
 
