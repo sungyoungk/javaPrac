@@ -140,7 +140,7 @@ public class ListSample {
         list.add("a");
         list.add("b");
         list.add("c");
-      
+
         System.out.println(list.set(0, "A") +  " is changed to A");
 
         for (int loop = 0; loop < list.size(); loop++) {
