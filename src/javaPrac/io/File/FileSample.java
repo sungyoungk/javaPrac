@@ -1,4 +1,4 @@
-package javaPrac.File;
+package javaPrac.io.File;
 
 import java.io.File;
 import java.util.Date;
