@@ -1,9 +1,7 @@
 package javaPrac.io;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class ReadFile {
     public static void main(String[] args) {
@@ -56,6 +54,30 @@ public class ReadFile {
             }
         }
 
+    }
+
+    public void readWithScanner(String fileName) {
+        File file = new File(fileName);
+        Scanner scanner = null;
+
+
+        try {
+            scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                System.out.println(data);
+            }
+            System.out.println("read success");
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
     }
 
 }
