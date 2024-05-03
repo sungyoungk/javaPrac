@@ -75,7 +75,7 @@ public class ReadFile {
         } finally {
 
             if (scanner != null) {
-                scanner.close();
+                scanner.close(); //
             }
         }
     }
