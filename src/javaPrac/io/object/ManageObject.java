@@ -10,8 +10,8 @@ public class ManageObject {
         String fullPath = separator + "Users" + separator + "sungyoung" + separator + "Desktop" + separator + "serial.obj";
 
         SerialDTO dto = new SerialDTO("godOfJava", 1, true, 100);
-        // manager.saveObject(fullPath, dto);  // /Users/sungyoung/Desktop
-        manager.loadObject(fullPath);
+         // manager.saveObject(fullPath, dto);  // /Users/sungyoung/Desktop
+         manager.loadObject(fullPath);
 
 
     }
