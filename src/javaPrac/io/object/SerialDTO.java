@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class SerialDTO implements Serializable {
 
     private String bookName;
-    private int bookOrder;
+    transient private int bookOrder;
     private boolean bestSeller;
     private long soldPerDat;
     private String bookType = "IT";
@@ -26,6 +26,7 @@ public class SerialDTO implements Serializable {
                 ", bookOrder=" + bookOrder +
                 ", bestSeller=" + bestSeller +
                 ", soldPerDat=" + soldPerDat +
+                ", bookType='" + bookType + '\'' +
                 '}';
     }
 }
