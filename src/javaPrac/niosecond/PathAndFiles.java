@@ -32,7 +32,7 @@ public class PathAndFiles {
         Path absolute = relativized.toAbsolutePath();
         System.out.println("toAbsolutePath : " + absolute);
 
-        Path normal = relativized.normalize();
+        Path normal = relativized.normalize(); 
         System.out.println("normalize path : " + normal);
 
         Path resolved = path.resolve("godofjava");
