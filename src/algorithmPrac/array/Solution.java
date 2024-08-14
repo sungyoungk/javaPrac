@@ -74,7 +74,7 @@ public class Solution {
         for (Point point : points) {
             int x = (int) (point.x - minimum.x);
             int y = (int) (point.y - minimum.y);
-            arr[x][y] = '*';
+            arr[y][x] = '*';
         }
 
         String[] result = new String[arr.length];
