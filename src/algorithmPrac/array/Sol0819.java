@@ -84,7 +84,7 @@ public class Sol0819 {
         }
 
         for (Point point : points) {
-            int x = (int) (maxPoint(points).x - point.x);
+            int x = (int) (point.x - minPoint(points).x);
             int y = (int) (maxPoint(points).y - point.y);
             charArr[y][x] = '*';
         }
