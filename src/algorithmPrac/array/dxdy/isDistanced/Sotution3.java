@@ -1,9 +1,10 @@
 package algorithmPrac.array.dxdy.isDistanced;
 
+import algorithmPrac.array.dxdy.Solution3;
 
-public class Solution2 {
+import javax.swing.*;
 
-
+public class Sotution3 {
     String[][] places = {
             {"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"},
             {"POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"},
@@ -11,16 +12,16 @@ public class Solution2 {
             {"OOOXX", "XOOOX", "OOOXX", "OXOOX", "00000"},
             {"PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"}
     };
-
-    /*
+    //
+                                  // 상  좌  우  하
+                                  // 0   1   2  3
+    private static final int[] dx = {0, -1, 1, 0};
+    private static final int[] dy = {-1, 0, 0, 1};
+ /*
      P : 응시자가 앉아있는 자리
      O : 빈 테이블
      X : 파티션
      */
-                                  //상   좌  우  하
-                                  // 0   1  2  3
-    private static final int[] dx = {0, -1, 1, 0};
-    private static final int[] dy = {-1, 0, 0, 1};
 
     private boolean isNextToVolunteer(char[][] room, int x, int y, int exclude) {
         for (int d = 0; d < 4; d++) {
@@ -37,15 +38,14 @@ public class Solution2 {
 
     private boolean isDistanced(char[][] room, int x, int y) {
         for (int d = 0; d < 4; d++) {
-
-            int nx = x + dx[d];
             int ny = y + dy[d];
+            int nx = x + dx[d];
 
-            if(ny < 0 || ny >= room.length || nx < 0 || nx >= room.length) continue;
+            if (ny < 0 || ny >= room.length || nx < 0 || nx >= room.length) continue;
 
-            switch (room[ny][nx]) {
-                case 'P' : return false;
-                case 'O' : if(isNextToVolunteer(room, nx, ny, 3-d)) return false;
+            switch(room[ny][nx]) {
+                case 'P': return false;
+                case 'O': if(isNextToVolunteer(room, nx, ny, 3-d)) return false;
                 break;
             }
         }
@@ -53,6 +53,7 @@ public class Solution2 {
     }
 
     private boolean isDistanced(char[][] room) {
+
         for (int y = 0; y < room.length; y++) {
             for (int x = 0; x < room[y].length; x++) {
                 if(room[y][x] != 'P') continue;
@@ -65,7 +66,7 @@ public class Solution2 {
     public int[] solution(String[][] places) {
         int[] answer = new int[places.length];
 
-        for (int i = 0; i < answer.length; i++) {
+        for (int i = 0; i < places.length; i++) {
             String[] place = places[i];
             char[][] room = new char[place.length][];
             for (int j = 0; j < room.length; j++) {
@@ -81,7 +82,7 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        Solution2 sol2 = new Solution2();
+        Solution3 solution = new Solution3();
 
         String[][] places = {
                 {"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"},
@@ -91,12 +92,14 @@ public class Solution2 {
                 {"PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"}
         };
 
-        int[] answers = sol2.solution(places);
 
-        for (int answer : answers) {
+        Sotution3 sol3 = new Sotution3();
+
+        int[] array = sol3.solution(places);
+        for (int answer : array) {
             System.out.println(answer);
         }
+
+
     }
-
-
 }
