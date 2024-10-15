@@ -1,10 +1,6 @@
 package algorithmPrac.array.dxdy.isDistanced;
 
-import algorithmPrac.array.dxdy.Solution3;
-
-import javax.swing.*;
-
-public class Sotution3 {
+public class Solution3 {
     String[][] places = {
             {"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"},
             {"POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"},
@@ -82,7 +78,7 @@ public class Sotution3 {
     }
 
     public static void main(String[] args) {
-        Solution3 solution = new Solution3();
+        algorithmPrac.array.dxdy.Solution3 solution = new algorithmPrac.array.dxdy.Solution3();
 
         String[][] places = {
                 {"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"},
@@ -93,7 +89,7 @@ public class Sotution3 {
         };
 
 
-        Sotution3 sol3 = new Sotution3();
+        Solution3 sol3 = new Solution3();
 
         int[] array = sol3.solution(places);
         for (int answer : array) {
