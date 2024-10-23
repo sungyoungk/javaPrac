@@ -13,7 +13,6 @@ public class Solution3 {
 
     public int[][] solution(int[][] arr1, int[][] arr2) {
         int[][] arr = new int[arr1.length][arr2[0].length];
-
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 arr[i][j] = 0;
