@@ -3,7 +3,9 @@ package algorithmPrac.string.notation;
 public class BinaryPrac {
 
     private String str = "110010101001";
-
+/** @이진_변환_반복하기_level2 (p.130)
+ *  @URL: https://programmers.co.kr/learn/courses/30/lessons/70129
+ */
 
     /**
      *      0과 1 로 이루어진 어떤 문자열 x에 대한 이진 변환을 다음과 같이 정의합니다.
