@@ -45,7 +45,4 @@ public class QuadCompression {
         Count count = count(0, 0, arr.length, arr);
         return new int[]{count.zero, count.one};
    }
-
-
-
 }

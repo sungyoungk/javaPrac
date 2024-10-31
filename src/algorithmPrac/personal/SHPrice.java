@@ -15,7 +15,7 @@ public class SHPrice {
     public static void main(String[] args) {
         SHPrice sh = new SHPrice();
 
-        int price = 195000000;
+        int price = 190000000;
 
         System.out.println(sh.solution(price));
     }
