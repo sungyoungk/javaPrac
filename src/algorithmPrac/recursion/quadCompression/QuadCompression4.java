@@ -1,4 +1,4 @@
-package algorithmPrac.recursion;
+package algorithmPrac.recursion.quadCompression;
 
 public class QuadCompression4 {
     /**
