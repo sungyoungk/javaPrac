@@ -49,5 +49,4 @@ public class MockExam {
                 .map(i -> i +1)
                 .toArray();
     }
-
 }
