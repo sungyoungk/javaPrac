@@ -1,4 +1,4 @@
-package algorithmPrac.exhaustiveSearch;
+package algorithmPrac.exhaustiveSearch.mockExam;
 
 import java.util.stream.IntStream;
 
