@@ -19,59 +19,63 @@ public class MaxFormula3 {
             "*-+".split("")
     };
 
+
     private long calculate(long lhs, long rhs, String op) {
-        long answer = 0L;
-        //
-        switch(op) {
-            case "+" : answer = lhs + rhs;
-            break;
-            case "-" : answer = lhs - rhs;
-            break;
-            case "*": answer = lhs * rhs;
-            break;
-            default : answer = 0L;
-            break;
+
+        long result = 0L;
+
+        switch (op) {
+            case "+":
+                result = lhs + rhs;
+                break;
+            case "-":
+                result = lhs - rhs;
+                break;
+            case "*":
+                result = lhs * rhs;
+                break;
+            default:
+                result = 0L;
+                break;
         }
-        //
-        return answer;
+        return result;
     }
 
-    private long calculate(String[] precedence, List<String>tokens) {
-    for(String op : precedence) {
-        for (int i = 0; i < tokens.size(); i ++) {
-            if(tokens.get(i).equals(op)) {
-                long lhs = Long.parseLong(tokens.get(i - 1));
-                long rhs = Long.parseLong(tokens.get(i + 1));
-
-                tokens.remove(i -1);
-                tokens.remove(i-1);
-                tokens.remove(i-1);
-                tokens.add(i -1, String.valueOf(calculate(lhs, rhs, op)));
-                i -= 2;
+    private long calculate(String[] precedence, List<String> tokens) {
+        for (String op : precedence) {
+            for (int i = 0; i < tokens.size(); i++) {
+                if (op.equals(tokens.get(i))) {
+                    long lhs = Long.parseLong(tokens.get(i - 1));
+                    long rhs = Long.parseLong(tokens.get(i + 1));
+                    long result = calculate(lhs, rhs, op);
+                    tokens.remove(i - 1);
+                    tokens.remove(i - 1);
+                    tokens.remove(i - 1);
+                    tokens.add(i - 1, String.valueOf(result));
+                    i -= 2;
+                }
             }
         }
-    }
-    return Long.parseLong(tokens.get(0));
+        return Long.parseLong(tokens.get(0));
     }
 
     public long solution(String expression) {
-    StringTokenizer tokenizer = new StringTokenizer(expression, "*+-", true);
+        StringTokenizer tokenizer = new StringTokenizer(expression, "+-*", true);
 
-    List<String> tokens = new ArrayList<String>();
+        List<String> tokens = new ArrayList<String>();
 
-      while(tokenizer.hasMoreTokens()) {
-          tokens.add(tokenizer.nextToken());
-      }
+        while (tokenizer.hasMoreTokens()) {
+            tokens.add(tokenizer.nextToken());
+        }
+        long max = 0L;
 
-      long max = 0;
+        for (String[] precedence : precedences) {
+            long value = Math.abs(calculate(precedence, new ArrayList<>(tokens)));
 
-     for(String[] precedence : precedences) {
-         long value = calculate(precedence, new ArrayList<>(tokens));
-
-         if ( value > max) {
-             max = value;
-         }
-     }
-    return max;
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
     }
 }
