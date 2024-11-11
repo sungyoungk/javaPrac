@@ -10,5 +10,4 @@ public class MaxFormula {
         long answer = 0;
         return answer;
     }
-
 }
