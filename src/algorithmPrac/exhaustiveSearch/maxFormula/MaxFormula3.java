@@ -19,26 +19,13 @@ public class MaxFormula3 {
             "*-+".split("")
     };
 
-
     private long calculate(long lhs, long rhs, String op) {
-
-        long result = 0L;
-
-        switch (op) {
-            case "+":
-                result = lhs + rhs;
-                break;
-            case "-":
-                result = lhs - rhs;
-                break;
-            case "*":
-                result = lhs * rhs;
-                break;
-            default:
-                result = 0L;
-                break;
-        }
-        return result;
+        return  switch (op) {
+                    case "+" -> lhs + rhs;
+                    case "-" -> lhs - rhs;
+                    case "*" -> lhs * rhs;
+                    default -> 0;
+                };
     }
 
     private long calculate(String[] precedence, List<String> tokens) {
@@ -47,11 +34,14 @@ public class MaxFormula3 {
                 if (op.equals(tokens.get(i))) {
                     long lhs = Long.parseLong(tokens.get(i - 1));
                     long rhs = Long.parseLong(tokens.get(i + 1));
-                    long result = calculate(lhs, rhs, op);
+                    long result = Math.abs(calculate(lhs, rhs, op));
+
                     tokens.remove(i - 1);
                     tokens.remove(i - 1);
                     tokens.remove(i - 1);
+
                     tokens.add(i - 1, String.valueOf(result));
+
                     i -= 2;
                 }
             }
@@ -60,17 +50,18 @@ public class MaxFormula3 {
     }
 
     public long solution(String expression) {
-        StringTokenizer tokenizer = new StringTokenizer(expression, "+-*", true);
+        StringTokenizer tokenizer = new StringTokenizer(expression, "+*-", true);
 
-        List<String> tokens = new ArrayList<String>();
+        List<String> tokens = new ArrayList<>();
 
         while (tokenizer.hasMoreTokens()) {
             tokens.add(tokenizer.nextToken());
         }
-        long max = 0L;
+
+        long max = 0;
 
         for (String[] precedence : precedences) {
-            long value = Math.abs(calculate(precedence, new ArrayList<>(tokens)));
+            long value = calculate(precedence, new ArrayList<>(tokens));
 
             if (value > max) {
                 max = value;
@@ -78,4 +69,5 @@ public class MaxFormula3 {
         }
         return max;
     }
+
 }
