@@ -10,33 +10,28 @@ import java.util.stream.Collectors;
  * @소수찾기 level2 p.211
  * @URL: https://school.programmers.co.kr/learn/courses/30/lessons/42839
  */
-public class PrimeNumber1 {
+public class PrimeNumber2 {
 
+    private boolean isPrime(int acc) {
+        if (acc <= 1) return false;
 
-    // 소수 : 1보다 큰 자연수 중 1과 자기 자신만을 약수로 가지는 수
-    private boolean isPrime(int n) {
-    if ( n <= 1) return false;
-
-    for ( int i = 2; i * i <= n; i++) {
-        if(n % i == 0) return false;
-    }
+        for(int i = 2; i * i <= acc; i++) {
+            if (acc % i == 0) return false;
+        }
     return true;
     }
 
-
-                                                            // 17
     private Set<Integer> getPrimes(int acc, List<Integer> numbers) {
         Set<Integer> primes = new HashSet<>();
-        if (isPrime(acc)) primes.add(acc);
+        if(isPrime(acc)) primes.add(acc);
 
-        for (int i = 0; i < numbers.size(); i++) {
+        for ( int i = 0 ; i < numbers.size() ; i++) {
             int nextAcc = acc * 10 + numbers.get(i);
             List<Integer> nextNumbers = new ArrayList<>(numbers);
 
             nextNumbers.remove(i);
             primes.addAll(getPrimes(nextAcc, nextNumbers));
         }
-
         return primes;
     }
 
@@ -47,6 +42,11 @@ public class PrimeNumber1 {
                 .collect(Collectors.toList());
 
         return getPrimes(0, numbers).size();
+    }
+
+    public static void main(String[] args) {
+        PrimeNumber2 prime = new PrimeNumber2();
+        prime.solution("17");
     }
 
 }
