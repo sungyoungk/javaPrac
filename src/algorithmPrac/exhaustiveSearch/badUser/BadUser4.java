@@ -31,34 +31,32 @@ public class BadUser4 {
 
         if (index == bans.length) {
             banSet.add(new HashSet<>(banned));
-
             return;
         }
 
-        for(String ban : bans[index]) {
-            if(banned.contains(ban)) continue;
+        for (String id : bans[index]) {
+            if(banned.contains(id)) continue;
 
-            banned.add(ban);
+            banned.add(id);
             count(index + 1, bans, banned, banSet);
-            banned.remove(ban);
+            banned.remove(id);
         }
-    }
 
+    }
 
     public int solution(String[] user_id, String[] banned_id) {
+        String[][] bans =   Arrays.stream(banned_id)
+                            .map(ban -> ban.replace('*', '.'))
+                            .map(ban -> Arrays.stream(user_id)
+                                    .filter(id -> id.matches(ban))
+                                    .toArray(String[]::new))
+                            .toArray(String[][]::new);
 
-        String[][] bans = Arrays.stream(banned_id)
-                .map(ban -> ban.replace('*', '.'))
-                .map(ban -> Arrays.stream(user_id)
-                        .filter(id -> id.matches(ban))
-                        .toArray(String[]::new))
-                .toArray(String[][]::new);
-
-        Set<Set<String>>banSet = new HashSet<>();
-        count(0, bans, new HashSet<>(), banSet );
+        Set<Set<String>> banSet = new HashSet<>();
+        count(0, bans, new HashSet<>(), banSet);
 
         return banSet.size();
-    }
+        }
 
     /**
      * 상태(
