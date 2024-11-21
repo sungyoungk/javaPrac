@@ -1,4 +1,4 @@
-package algorithmPrac.sort;
+package algorithmPrac.sort.kNum;
 
 import java.util.Arrays;
 
