@@ -34,6 +34,6 @@ public class PairSum1 {
             answer.add(numbers[i] + numbers[j])    ;
         }
     }
-        return answer.stream().mapToInt(Integer::intValue).sorted().toArray();
+        return answer.stream().mapToInt(a -> a.intValue()).sorted().toArray();
     }
 }
