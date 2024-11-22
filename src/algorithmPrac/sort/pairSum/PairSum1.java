@@ -24,16 +24,16 @@ public class PairSum1 {
 
     public int[] solution(int[] numbers) {
 
-    Set<Integer> set = new HashSet<>();
+    Set<Integer> answer = new HashSet<>();
 
     for ( int i = 0; i < numbers.length; i ++ ) {
-        for ( int j = i + 1; j < numbers.length; j++ ) {
-            set.add(numbers[i] + numbers[j]);
+        for ( int j = 0; j < numbers.length; j++ ) {
+
+            if (i == j) continue;
+
+            answer.add(numbers[i] + numbers[j])    ;
         }
     }
-
-        return set.stream().mapToInt(s -> s.intValue()).sorted().toArray();
+        return answer.stream().mapToInt(Integer::intValue).sorted().toArray();
     }
-
-
 }
