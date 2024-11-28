@@ -16,22 +16,23 @@ import java.util.Arrays;
  *
  * @입출력_예시
  * [3, 0, 6, 1, 5 ]  ->  논문 5편 중,  3 편의 논문은 3회 이상 인용, 나머지 2편의 논문은 3회 이하 인용, h 인덱스는 *3*
+ 0 1 3 5 6
  */
 
 public class HIndex {
-
 
     private boolean isValid(int[] citations, int h) {
         int index = citations.length - h;
         return citations[index] >= h;
     }
 
+
     public int solution(int[] citations) {
-        Arrays.sort(citations);
-for (int h = citations.length; h >=1; h--) {
-    if ( isValid(citations, h)) return h;
-    // h의 범위는 0을 포함하지만, 0은 가장 작은 값이기 때문에, 검사 없이 바로 반환
-}
-return 0;
+    Arrays.sort(citations);
+
+    for ( int h = citations.length; h >= 1; h --) {
+       if( isValid(citations, h) ) return h;
+    }
+    return 0;
     }
 }
