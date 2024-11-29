@@ -18,9 +18,6 @@ public class SortString {
 
     public static void main(String[] args) {
         SortString sort = new SortString();
-
-
-
         System.out.println(sort.solution("Zbcdefg"));
     }
 
