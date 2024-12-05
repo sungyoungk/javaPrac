@@ -69,7 +69,7 @@ public class Solution {
             courses.put(length, list);
         }
         getCourses('A', new HashSet<>(), orderList, courses);
-
+                //   nextMenu    selectedMenus
         return courses.values().stream()
                 .filter(list -> list.get(0).occurrences > 0)
                 .flatMap(List::stream)
