@@ -25,17 +25,15 @@ public class Solutio2 {
       double x = (double) (B*F - E*D) / (A*D - B*C);
       double y = (double) (E*C - A*F) / (A*D - B*C);
 
-      if(x % 1 !=0 || y % 1 !=0){
-          return null;
-      }
+      if(x % 1 !=0 || y % 1 !=0) return null;
 
         return new Point((long)x, (long)y);
     }
 
     private Point maxPoint(List<Point> points) {
 
-      long x = Integer.MIN_VALUE;
-      long y = Integer.MIN_VALUE;
+      long x = Long.MIN_VALUE;
+      long y = Long.MIN_VALUE;
 
       for(Point p : points) {
           if(p.x > x) x = p.x;
@@ -46,8 +44,8 @@ public class Solutio2 {
     }
 
     private Point minPoint(List<Point> points) {
-      long x = Integer.MAX_VALUE;
-      long y = Integer.MAX_VALUE;
+      long x = Long.MAX_VALUE;
+      long y = Long.MAX_VALUE;
 
       for(Point p : points) {
           if(p.x < x) x = p.x;
