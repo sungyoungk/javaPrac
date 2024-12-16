@@ -74,3 +74,65 @@ HAVING COUNT(user_id) > 1 AND COUNT(product_id) > 1
 order by user_id, product_id desc
 
 
+/**
+  *@조건에 맞는 수 구하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/131535
+ */
+SELECT count(*) as USERS
+FROM USER_INFO
+WHERE year(joined) = 2021
+AND age BETWEEN 20 and 29
+
+/**
+  *@조건에 맞는 도서 리스트 출력하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/144853
+ */
+SELECT BOOK_ID
+     , DATE_FORMAT(PUBLISHED_DATE, '%Y-%m-%d') AS PUBLISHED_DATE
+from BOOK
+where year(PUBLISHED_DATE) = 2021
+  and CATEGORY = '인문'
+order by PUBLISHED_DATE
+
+/**
+  *@12세 이하인 여자 환자 목록 출력하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/132201
+ */
+SELECT PT_NAME
+     , PT_NO
+     , GEND_CD
+     , AGE
+     , COALESCE(TLNO, 'NONE') AS TLNO
+from PATIENT
+where AGE <= 12
+  and GEND_CD ='W'
+order by AGE desc, PT_NAME
+
+/**
+  *@조건에 부합하는 중고거래 댓글 조회하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/164673
+ */
+SELECT b.TITLE
+     , b.BOARD_ID
+     , r.REPLY_ID
+     , r.WRITER_ID
+     , r.CONTENTS
+     , DATE_FORMAT(r.CREATED_DATE, '%Y-%m-%d') AS CREATED_DATE
+from USED_GOODS_BOARD b
+         join USED_GOODS_REPLY r
+              on r.BOARD_ID = b.BOARD_ID
+where year(b.CREATED_DATE)= 2022 and month (b.CREATED_DATE) = 10
+order by r.CREATED_DATE, b.TITLE
+
+/**
+  *@조건에 모든 레코드 조회하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/59034
+ */
+SELECT ANIMAL_ID
+     , ANIMAL_TYPE
+     , DATETIME
+     , INTAKE_CONDITION
+     , NAME
+     , SEX_UPON_INTAKE
+from ANIMAL_INS
+order by ANIMAL_ID
