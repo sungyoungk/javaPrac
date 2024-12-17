@@ -167,3 +167,14 @@ SELECT ID
 FROM DEVELOPER_INFOS
 WHERE SKILL_1 = 'Python' OR SKILL_2 = 'Python' OR SKILL_3 = 'Python'
 ORDER BY ID
+
+/**
+  * @대장균들의_자식의_수-구하기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/299305
+ */
+SELECT A.ID
+     , COUNT(B.PARENT_ID) AS CHILD_COUNT
+FROM ECOLI_DATA A
+         LEFT JOIN ECOLI_DATA B
+                   ON B.PARENT_ID = A.ID
+GROUP BY A.ID
