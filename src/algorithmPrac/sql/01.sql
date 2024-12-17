@@ -66,11 +66,12 @@ order by HIRE_YMD DESC, DR_NAME ASC;
   *@재구매가 일어난 상품과 회원 리스트 구하기
   *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/131536
  */
-SELECT user_id     AS USER_ID
-     , product_id  AS PRODUCT_ID
+SELECT user_id    AS USER_ID
+     , product_id AS PRODUCT_ID
 from ONLINE_SALE
 group by user_id, product_id
-HAVING COUNT(user_id) > 1 AND COUNT(product_id) > 1
+HAVING COUNT(user_id) > 1
+   AND COUNT(product_id) > 1
 order by user_id, product_id desc
 
 
@@ -81,7 +82,7 @@ order by user_id, product_id desc
 SELECT count(*) as USERS
 FROM USER_INFO
 WHERE year(joined) = 2021
-AND age BETWEEN 20 and 29
+  AND age BETWEEN 20 and 29
 
 /**
   *@조건에 맞는 도서 리스트 출력하기
@@ -105,7 +106,7 @@ SELECT PT_NAME
      , COALESCE(TLNO, 'NONE') AS TLNO
 from PATIENT
 where AGE <= 12
-  and GEND_CD ='W'
+  and GEND_CD = 'W'
 order by AGE desc, PT_NAME
 
 /**
@@ -121,7 +122,8 @@ SELECT b.TITLE
 from USED_GOODS_BOARD b
          join USED_GOODS_REPLY r
               on r.BOARD_ID = b.BOARD_ID
-where year(b.CREATED_DATE)= 2022 and month (b.CREATED_DATE) = 10
+where year(b.CREATED_DATE) = 2022
+  and month(b.CREATED_DATE) = 10
 order by r.CREATED_DATE, b.TITLE
 
 /**
@@ -136,3 +138,43 @@ SELECT ANIMAL_ID
      , SEX_UPON_INTAKE
 from ANIMAL_INS
 order by ANIMAL_ID
+
+/**
+  *@업그레이드 된 아이템 구하기
+  *@URL: https://school.programmers.co.kr/learn/courses/30/lessons/273711
+ */
+with child as (select tree.item_id
+               from ITEM_INFO info
+                        join ITEM_TREE tree
+                             on tree.PARENT_ITEM_ID = info.ITEM_ID
+               where info.RARITY = 'RARE')
+select i.ITEM_ID
+     , i.ITEM_NAME
+     , i.RARITY
+from ITEM_INFO i
+         join child
+              on child.item_id = i.item_id
+order by i.ITEM_ID desc
+
+/**
+  @PYTHON 개발자_찾기
+  @URL: https://school.programmers.co.kr/learn/courses/30/lessons/276013
+ */
+SELECT ID
+     , EMAIL
+     , FIRST_NAME
+     , LAST_NAME
+FROM DEVELOPER_INFOS
+WHERE SKILL_1 = 'Python' OR SKILL_2 = 'Python' OR SKILL_3 = 'Python'
+ORDER BY ID
+
+/**
+  * @대장균들의_자식의_수-구하기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/299305
+ */
+SELECT A.ID
+     , COUNT(B.PARENT_ID) AS CHILD_COUNT
+FROM ECOLI_DATA A
+         LEFT JOIN ECOLI_DATA B
+                   ON B.PARENT_ID = A.ID
+GROUP BY A.ID
