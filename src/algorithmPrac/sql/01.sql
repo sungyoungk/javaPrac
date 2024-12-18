@@ -178,3 +178,34 @@ FROM ECOLI_DATA A
          LEFT JOIN ECOLI_DATA B
                    ON B.PARENT_ID = A.ID
 GROUP BY A.ID
+
+/**
+  * @특정_형질을_가지는_대장균_찾기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/301646
+ */
+select count(id) as COUNT
+from ecoli_data
+where (GENOTYPE & 2 = 0) and (GENOTYPE & 1 > 0 or GENOTYPE & 4 > 0)
+
+/**
+  * @부모의_형질을_모두_가지는_대장균_찾기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/301647
+ */
+SELECT c.ID
+     , c.GENOTYPE
+     , p.GENOTYPE AS PARENT_GENOTYPE
+FROM ECOLI_DATA c
+         left JOIN ECOLI_DATA p on c.PARENT_ID = P.ID
+WHERE c.PARENT_ID is not null
+  AND c.GENOTYPE & p.GENOTYPE = p.GENOTYPE
+ORDER BY c.ID asc
+
+/**
+  * @특정_세대의_대장균_보기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/301650
+ */
+select third.ID
+from ECOLI_DATA first
+left join ECOLI_DATA second on second.PARENT_ID = first.ID
+left join ECOLI_DATA third on third.PARENT_ID = second.ID
+where first.PARENT_ID is null and third.id is not null
