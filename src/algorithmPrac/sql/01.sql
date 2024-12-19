@@ -209,3 +209,20 @@ from ECOLI_DATA first
 left join ECOLI_DATA second on second.PARENT_ID = first.ID
 left join ECOLI_DATA third on third.PARENT_ID = second.ID
 where first.PARENT_ID is null and third.id is not null
+
+/**
+  * @연도별_대장균_크기의_편차_구하기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/299310
+ */
+with max_colony_size as(
+    select max(SIZE_OF_COLONY)                     as max_colony
+         ,YEAR(DIFFERENTIATION_DATE) as year
+    from ECOLI_DATA data
+    group by YEAR(DIFFERENTIATION_DATE)
+)
+select b.YEAR                            AS YEAR
+     , (b.max_colony - a.SIZE_OF_COLONY) AS YEAR_DEV
+     , a.ID                              AS ID
+from ECOLI_DATA a
+         join max_colony_size b on YEAR(a.DIFFERENTIATION_DATE) = b.year
+order by YEAR, YEAR_DEV
