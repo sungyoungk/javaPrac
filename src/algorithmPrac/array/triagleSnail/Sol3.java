@@ -6,51 +6,47 @@ public class Sol3 {
 
 
     private int[] solution(int n) {
-        int[][] triangle = new int[n][n];
-        int v = 1;
-        int x = 0;
-        int y = 0;
+       int[][] triangle = new int[n][n];
+       int x = 0;
+       int y = 0;
+       int v = 1;
 
-        while(true){
-            //아래로 이동
-            while (true) {
-                triangle[y][x] = v++;
-                if(y + 1 == n || triangle[y + 1][x] != 0) break;
-                y += 1;
-            }
-            if(x + 1 ==n || triangle[y][x+1] != 0) break;
-            x += 1;
+      while(true) {
+          while(true){
+              triangle[y][x] = v++;
+              if(y+1 == n || triangle[y+1][x] != 0) break;
+              y++;
+          }
+          if(x+1 == n || triangle[y][x+1] != 0) break;
+          x++;
 
-            while (true) {
-                triangle[y][x] = v++;
-                if(x +1==n || triangle[y][x+1] != 0) break;
-                x += 1;
-            }
+          while(true) {
+              triangle[y][x] = v++;
+              if(x+1 == n || triangle[y][x+1] != 0) break;
+              x++;
+          }
+          if(triangle[y-1][x-1] != 0) break;
+          y--;
+          x--;
 
-            if(triangle[y-1][x-1] != 0) break;
-            y -= 1;
-            x -= 1;
+          while(true) {
+              triangle[y][x] = v++;
+              if(triangle[y-1][x-1] != 0) break;
+              y--;
+              x--;
+          }
+          if(triangle[y+1][x] != 0) break;
+          y++;
+      }
 
-            while (true) {
-                triangle[y][x] = v++;
-                if(triangle[y-1][x-1] != 0) break;
-                y -= 1;
-                x -= 1;
-            }
-
-            if(y +1 == n || triangle[y+1][x] != 0) break;
-            y += 1;
-        }
-
-        int[] result = new int[v - 1];
-        int index = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j <= i; j++) {
-                result[index++] = triangle[i][j];
-            }
-        }
-        return result;
+      int[] result = new int[v-1];
+      int index = 0;
+      for(int i = 0; i < n; i++) {
+          for(int j = 0; j <= i; j++) {
+              result[index++] = triangle[i][j];
+          }
+      }
+      return result;
     }
 
     public static void main(String[] args) {
@@ -59,6 +55,4 @@ public class Sol3 {
 
         System.out.println(Arrays.toString(solution));
     }
-
-
 }
