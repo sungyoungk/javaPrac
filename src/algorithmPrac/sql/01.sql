@@ -226,3 +226,8 @@ select b.YEAR                            AS YEAR
 from ECOLI_DATA a
          join max_colony_size b on YEAR(a.DIFFERENTIATION_DATE) = b.year
 order by YEAR, YEAR_DEV
+
+/**
+  * @연도별_대장균_크기의_편차_구하기
+  * @ URL: https://school.programmers.co.kr/learn/courses/30/lessons/299310
+ */
