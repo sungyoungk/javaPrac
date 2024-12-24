@@ -21,11 +21,11 @@ public class Solution {
             triangle[y][x] = v++;
             int nx = x + dx[d];
             int ny = y + dy[d];
-            if(nx == n || ny == n || nx == -1 || ny == -1 || triangle[y][x] != 0) {
+            if(nx == n || ny == n || nx == -1 || ny == -1 || triangle[ny][nx] != 0) {
                 d = (d+1) % 3 ;
                 nx = x + dx[d];
                 ny = y + dy[d];
-                if(nx == n || ny == n || nx == -1 || ny == -1 || triangle[y][x] != 0) bkeak;
+                if(nx == n || ny == n || nx == -1 || ny == -1 || triangle[ny][nx] != 0) break;
             }
             x = nx;
             y = ny;
