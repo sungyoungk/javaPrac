@@ -10,25 +10,26 @@ public class Solution6 {
     private final int[] dx = {0, -1, 1, 0};
     private final int[] dy = {-1, 0, 0, 1};
 
-    private boolean isNextVolunteer(char[][]room, int x, int y , int exclude) {
+    private boolean isNextToVolunteer(char[][]room, int x, int y, int exclude) {
         for(int d = 0; d < 4; d++) {
             if(d == exclude) continue;
+
             int nx = x + dx[d];
             int ny = y + dy[d];
-            if(ny < 0 || ny >= room.length || nx < 0 || nx >= room[y].length) continue;
+            if(ny < 0 || ny >= room.length || nx < 0 || nx >= room[ny].length) continue;
             if(room[ny][nx] == 'P') return true;
         }
         return false;
     }
 
-    private boolean isDistanced(char[][] room, int x, int y) {
+    private boolean isDistanced(char[][]room, int x, int y) {
         for(int d = 0; d < 4; d++) {
             int nx = x + dx[d];
             int ny = y + dy[d];
             if(ny < 0 || ny >= room.length || nx < 0 || nx >= room[ny].length) continue;
             switch(room[ny][nx]) {
                 case 'P' : return false;
-                case 'O' : if(isNextVolunteer(room, nx, ny, 3 - d)) return false;
+                case 'O' : if(isNextToVolunteer(room, nx, ny, 3-d)) return false;
                 break;
             }
         }
@@ -46,19 +47,19 @@ public class Solution6 {
     }
 
     public int[] solution(String[][] places) {
-        int[] answer = new int[places.length];
-        for(int i = 0; i < answer.length; i++) {
-            String[] place = places[i];
-            char[][] room = new char[place.length][];
-            for(int j = 0; j < room.length; j++) {
-                room[j] = place[j].toCharArray();
-            }
-            if(isDistanced(room)) {
-                answer[i] = 1;
-            } else {
-                answer[i] = 0;
-            }
+    int[] answer = new int[places.length];
+    for(int i = 0; i < answer.length; i++) {
+        String[] place = places[i];
+        char[][] room = new char[place.length][];
+        for (int j = 0; j < place.length; j++) {
+            room[j] = place[j].toCharArray();
         }
-        return answer;
+        if(isDistanced(room)){
+            answer[i] = 1;
+        } else{
+            answer[i] = 0;
+        }
+    }
+    return answer;
     }
 }
