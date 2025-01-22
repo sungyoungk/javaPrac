@@ -6,16 +6,13 @@ package algorithmPrac.string.reverse;
  * @URL https://programmers.co.kr/learn/courses/30/lessons/12932
  */
 public class Solution {
-                        //12345 -? 54321
+    //12345 -? 54321
     public int[] solution(long n) {
-        String str = Long.toString(n);
-        String reversed = new StringBuilder(str).reverse().toString();
-
-        char[] arr = reversed.toCharArray();
-        int[] result = new int[arr.length];
+        String str = new StringBuilder(Long.toString(n)).reverse().toString();
+        int[] arr = new int[str.length()];
         for(int i = 0; i < arr.length; i++) {
-            result[i] = arr[i] - '0';
+            arr[i] = str.toCharArray()[i] - '0';
         }
-        return result;
+        return arr;
     }
 }
