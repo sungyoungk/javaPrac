@@ -7,24 +7,25 @@ public class WeirdText {
      */
 
 
-    public String solution(String str) {
-        boolean toUpper = true;
-        StringBuilder sb = new StringBuilder();
+    public String solution(String s) {
+        StringBuilder builder = new StringBuilder();
+        boolean upper = true;
 
-        for(char c : str.toCharArray()) {
-            if(!Character.isAlphabetic(c)) {
-                sb.append(c);
-                toUpper = true;
+        for (char c : s.toCharArray()) {
+            if (!Character.isAlphabetic(c)) {
+                builder.append(c);
+                upper = true;
             } else {
-                if(toUpper) {
-                   sb.append(Character.toUpperCase(c));
+                if (upper) {
+                    builder.append(Character.toUpperCase(c));
                 } else {
-                    sb.append(Character.toLowerCase(c));
+                    builder.append(Character.toLowerCase(c));
                 }
-                toUpper = !toUpper;
+                upper = !upper;
             }
         }
-        return sb.toString();
+
+        return builder.toString();
     }
 
     public static void main(String[] args) {
