@@ -14,6 +14,7 @@ public class CompressSol {
 
     private List<String> split(String source, int length) {
         List<String> tokens = new ArrayList<>();
+
         for (int startIndex = 0; startIndex < source.length(); startIndex += length) {
             int endIndex = startIndex + length;
             if (endIndex > source.length()) endIndex = source.length();
@@ -23,37 +24,36 @@ public class CompressSol {
     }
 
     private int compress(String source, int length) {
-    StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-    int count = 0;
-    String last = "";
+        int count = 0;
+        String last = "";
 
-    for (String token : split(source, length)) {
-        if (token.equals(last)) {
-            count++;
-        } else {
-            if (count > 1) builder.append(count);
-            builder.append(last);
-            last = token;
-            count = 1;
+        for (String token : split(source, length)) {
+            if (token.equals(last)) {
+                count++;
+            } else {
+                if (count > 1) builder.append(count);
+                builder.append(token);
+                last = token;
+
+                count = 1;
+            }
         }
-    }
-    if(count > 1) builder.append(count);
-    builder.append(last);
+        if(count > 1) builder.append(count);
+        builder.append(last);
 
-    return builder.length();
+        return builder.length();
     }
 
     public int solution(String s) {
         int min = Integer.MAX_VALUE;
         for (int length = 1; length <= s.length(); length++) {
             int compressed = compress(s, length);
-            if (compressed < min) {
-                min = compressed;
-            }
+            if (compressed < min) min = compressed;
         }
         return min;
-        }
+    }
 
 
     public static void main(String[] args) {
