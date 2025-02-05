@@ -23,29 +23,30 @@ public class CompressSol {
     }
 
     private int compress(String source, int length) {
-        StringBuilder builder = new StringBuilder();
-        int count = 0;
-        String last = "";
+    StringBuilder builder = new StringBuilder();
 
-        for(String token : split(source, length)) {
-            if(token.equals(last)) {
-                count++;
-            } else {
-                if (count > 1) builder.append(count);
-                builder.append(last);
-                last = token;
-                count = 1;
-            }
+    int count = 0;
+    String last = "";
+
+    for (String token : split(source, length)) {
+        if (token.equals(last)) {
+            count++;
+        } else {
+            if (count > 1) builder.append(count);
+            builder.append(last);
+            last = token;
+            count = 1;
         }
-        if (count > 1) builder.append(count);
-        builder.append(last);
+    }
+    if(count > 1) builder.append(count);
+    builder.append(last);
 
-        return builder.length();
+    return builder.length();
     }
 
     public int solution(String s) {
         int min = Integer.MAX_VALUE;
-        for(int length = 1; length <= s.length(); length++) {
+        for (int length = 1; length <= s.length(); length++) {
             int compressed = compress(s, length);
             if (compressed < min) {
                 min = compressed;
@@ -57,7 +58,7 @@ public class CompressSol {
 
     public static void main(String[] args) {
         CompressSol c = new CompressSol();
-        String str = "aabbaccc";
-        System.out.println(c.solution(str));  // 예상 출력: 7 ("2a2ba3c")
+        String str = "0123456";
+        System.out.println(str.substring(3,3));  // 예상 출력: 7 ("2a2ba3c")
     }
 }
