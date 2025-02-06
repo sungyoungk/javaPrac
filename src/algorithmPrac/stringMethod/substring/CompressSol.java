@@ -23,7 +23,7 @@ public class CompressSol {
         return tokens;
     }
 
-    private int compress(String source, int length) {
+    private int compress (String source, int length) {
         StringBuilder builder = new StringBuilder();
 
         int count = 0;
@@ -34,13 +34,12 @@ public class CompressSol {
                 count++;
             } else {
                 if (count > 1) builder.append(count);
-                builder.append(token);
+                builder.append(last);
                 last = token;
-
                 count = 1;
             }
         }
-        if(count > 1) builder.append(count);
+        if (count > 1) builder.append(count);
         builder.append(last);
 
         return builder.length();
@@ -50,7 +49,9 @@ public class CompressSol {
         int min = Integer.MAX_VALUE;
         for (int length = 1; length <= s.length(); length++) {
             int compressed = compress(s, length);
-            if (compressed < min) min = compressed;
+            if (compressed < min) {
+                min = compressed;
+            }
         }
         return min;
     }
