@@ -14,18 +14,24 @@ public class UpperLower {
 //     예를 들어 s가 "pPoooyY" 면 true 를 return 하고 "Pyy"라면 false 를 return 합니다.
 
     public boolean solution(String s) {
-
+        String str = s.toUpperCase();
         int p = 0;
         int y = 0;
 
-        char[] array = s.toUpperCase().toCharArray();
-        for(char c : array) {
-            if (c == 'P') p++;
-            if (c == 'Y') y++;
+        for(char c : str.toCharArray()) {
+            if (c == 'P') {
+                p++;
+            } else if (c == 'Y') {
+                y++;
+            }
         }
 
-        if(p == y) return true;
+        if (p == 0 && y ==0) return true;
+
+        if (p == y) return true;
 
         return false;
     }
+
+
 }
