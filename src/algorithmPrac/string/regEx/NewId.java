@@ -19,25 +19,24 @@ public class NewId {
 //    2단계 newjd에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.
 //    3단계 newjd에서 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환합니다.
 //    4단계 newjd에서 마침표(.)가 처음이나끝에 위치한다면 제거합니다.
-//    5단계 newjd가 빈 문자열이라면, newjd에 Ha"를 대입합니다.
+//    5단계 newjd가 빈 문자열이라면, newjd에 "a"를 대입합니다.
 //    6단계 newjd의 길이가 16자 이상이면, newjd의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합 니다.
 //         만약 제거 후 마침표(.)가 newjd의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.
 //    7단계 newjd의 길이가 2자 이하라면, newjd의 마지막 문자를 newjd의 길이가 3이 될 때까지 반복해 서 끝에 붙입니다.
 
 
     public String solution(String new_id) {
-      new_id = new_id.toLowerCase();
-      new_id = new_id.replaceAll("[^a-z0-9\\-_.]", "");
-      new_id = new_id.replaceAll("\\.{2,}", ".");
-      new_id = new_id.replaceAll("^\\.|\\.$", "");
-        if(new_id.isEmpty()) new_id = "a";
-        if(new_id.length() > 16) {
-            new_id = new_id.substring(0,15);
-            new_id.replaceAll("\\.$", "");
-        }
+        String newId = new_id.toLowerCase().replaceAll("[^a-z0-9\\-_.]","");
+        newId = newId.replaceAll("\\.+", ".");
+        newId = newId.replaceAll("^\\.+|\\.+$","");
+        if (newId.isEmpty()) newId = "a";
+        if (newId.length() >= 16) newId = newId.substring(0, 15);
+        newId = newId.replaceAll("\\.+$", "");
 
-        while(new_id.length() < 3) new_id += new_id.charAt(new_id.length() -1);
+       while (newId.length() < 3) {
+           newId += newId.charAt(newId.length() -1);
+       }
 
-        return new_id;
+       return newId;
     }
 }

@@ -15,13 +15,11 @@ public class Prac {
     }
 
     public static void main(String[] args) {
-        String[] arr = {"abcd","bcd","ab","aac"};
+        String[] arr = {"abcd","bcd","ab","aac\""};
 
-        Prac prac = new Prac();
 
-        String[] sArr = prac.regEx(arr);
-
-        for(String string : sArr){
+        for(String string : arr){
+           string =  string.replaceAll("[~!@#$%^&*()_+\"'/><|]", "A");
             System.out.println(string);
         }
     }
