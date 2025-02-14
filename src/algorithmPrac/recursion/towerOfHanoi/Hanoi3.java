@@ -18,22 +18,21 @@ public class Hanoi3 {
      {n-1, from, empty}
      */
 
-    private List<int[]> hanoi(int n, int from, int to) {
-        int empty = 6 - from - to;
-        List<int[]> result = new ArrayList<>();
+    public List<int[]> hanoi(int from, int to, int n) {
+        if ( n == 1) return List.of(new int[]{from, to});
 
-        if (n == 1) {
-            return List.of(new int[]{from, to});
-        }
-        result.addAll(hanoi(n - 1, from, empty));
-        result.addAll(hanoi(1, from, to));
-        result.addAll(hanoi(n - 1, empty, to));
+        int empty = 6 - from - to;
+
+        List<int[]> result = new ArrayList<>();
+        result.addAll(hanoi(from, empty, n-1));
+        result.addAll(hanoi(from, to, 1));
+        result.addAll(hanoi(empty, to, n-1));
 
         return result;
     }
 
     public int[][] solution(int n) {
-        return hanoi(n, 1, 3).toArray(new int[0][]);
+        return hanoi(0,3, n).toArray(new int[0][]);
     }
 }
 
