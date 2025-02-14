@@ -18,9 +18,8 @@ public class Hanoi3 {
      {n-1, from, empty}
      */
 
-
     private List<int[]> hanoi(int n, int from, int to) {
-        if ( n ==1 ) return List.of(new int[]{from, to});
+        if (n == 1) return List.of(new int[]{from, to});
 
         int empty = 6 - from - to;
         List<int[]> result = new ArrayList<>();
@@ -32,7 +31,7 @@ public class Hanoi3 {
     }
 
     public int[][] solution(int n) {
-        return hanoi(n , 1, 3).toArray(new int[0][]);
+        return hanoi(n, 1, 3).toArray(new int[0][]);
     }
 }
 
