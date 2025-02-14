@@ -10,34 +10,27 @@ import java.util.List;
 
 public class VowelsDictionary {
 
-    char[] words = {'A', 'E', 'I', 'O', 'U'};
-
     /**
      * @상태 (string, word, n)
      * (string, words, n+1) 단, 0 < n < 6
      */
 
-    char[] chars = "AEIOU".toCharArray();
+    private static final char[] CHARS = "AEIOU".toCharArray();
 
-    public void generate(String word, List<String> words) {
+    private List<String> generate(String word) {
+        List<String> words = new ArrayList<>();
         words.add(word);
 
-        if(word.length() == 5) {
-            return;
-        }
+        if (word.length() == 5) return words;
 
-
-        for (char c : chars) {
-            generate(word + c, words);
+        for(char c : CHARS) {
+            words.addAll(generate(word + c));
         }
+        return words;
     }
 
 
     public int solution(String word) {
-        List<String> words = new ArrayList<>();
-
-        generate("", words);
-
-        return words.indexOf(word);
+        return generate("").indexOf(word);
     }
 }
