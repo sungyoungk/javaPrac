@@ -33,6 +33,6 @@ public class VowelsDictionary {
 
 
     public int solution(String word) {
-        return generate(word).indexOf(word);
+        return generate("").indexOf(word);
     }
 }
