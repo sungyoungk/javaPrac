@@ -15,21 +15,18 @@ public class VowelsDictionary {
      * (string, words, n+1) 단, 0 < n < 6
      */
 
-    private static final char[] arr = "AEIOU".toCharArray();
+    private static char[] CHARS = "AEIOU".toCharArray();
 
     private List<String> generate(String word) {
-        List<String> result = new ArrayList<>();
-        result.add(word);
+        List<String> words = new ArrayList<>();
+        words.add(word);
 
-        if (word.length() == 5) return result;
-
-        for (char c : arr) {
-            result.addAll(generate(word +c));
-        }
-        return result;
+        if (word.length() == 5) return words;
+            for(char c : CHARS) {
+                words.addAll(generate(word +c));
+            }
+        return words;
     }
-
-
 
 
     public int solution(String word) {
