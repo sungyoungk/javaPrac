@@ -31,6 +31,7 @@ public class QuadCompression2 {
     // result : [4,9]
 
     // 0 과 1의 개수를 한 번에 담을 수 있는 클래스 생성
+
     private static class Count {
         public final int zero;
         public final int one;
@@ -46,26 +47,28 @@ public class QuadCompression2 {
     }
 
     private Count count(int offsetX, int offsetY, int size, int[][]arr) {
-        for (int x = offsetX; x < offsetX + size; x++) {
-            for (int y = offsetY; y < offsetY + size; y++) {
-                int h = size / 2;
-                if (arr[y][x] != arr[offsetY][offsetX]) {
+        int h = size / 2;
+
+        for ( int x = offsetX; x < offsetX + size; x ++) {
+            for ( int y = offsetY; y < offsetY + size; y++) {
+                if ( arr[y][x] != arr[offsetY][offsetX]) {
                     return count(offsetX, offsetY, h, arr)
                             .add(count(offsetX + h, offsetY, h, arr))
                             .add(count(offsetX, offsetY + h, h, arr))
                             .add(count(offsetX + h, offsetY + h, h, arr));
+
                 }
             }
         }
-        if (arr[offsetY][offsetX] == 1) {
+        if(arr[offsetY][offsetX] == 1) {
             return new Count(0, 1);
-        } else {
-            return new Count(1, 0);
         }
+        return new Count(1, 0);
     }
 
     public int[] solution(int[][] arr) {
-        Count count = count(0, 0, arr.length, arr);
-        return new int[]{count.zero, count.one};
+       Count count = count(0, 0, arr.length, arr);
+
+       return new int[]{count.zero, count.one};
     }
 }
