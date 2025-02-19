@@ -17,31 +17,37 @@ public class MockExam4 {
             {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
     };
 
-
-   private int getAnswer(int answerNum, int studentNum) {
-       int index = answerNum % RULES.length;
-       return RULES[studentNum][index];
-   }
+    private int getPicked(int person, int problem) {
+        int[] personNo = RULES[person];
+        int index = problem % personNo.length;
+        return personNo[index];
+    }
 
     public int[] solution(int[] answers) {
-       int[] corrects = new int[3];
-       int max = 0;
+        int[] corrects = new int[3];
+        int max = 0;
 
-       for(int i = 0; i < answers.length; i ++) {
-           int answer = answers[i];
-           for( int j = 0; j < RULES.length; j ++) {
-               int studentAnswer = getAnswer(i, j);
+        for ( int problem = 0; problem < answers.length; problem++) {
+            int answer = answers[problem];
 
-               if(answer == studentAnswer) {
-                   if (++corrects[j] > max) {
-                       max = corrects[i];
-                   }
-               }
-           }
-       }
+            for (int person = 0; person < 3; person++) {
+                int picked = getPicked(person, problem);
 
-       final int correctMax = max;
-       return IntStream.range(0,2).filter(i -> corrects[i] == correctMax)
-               .map(i -> i+1).toArray();
+                if (picked == answer) {
+                    if (++corrects[person] > max) {
+                        max = corrects[person];
+                    }
+                }
+            }
+        }
+
+        final int maxCorrects = max;
+        return IntStream.range(0, 3)
+                .filter( i -> corrects[i] == maxCorrects)
+                .map(i -> i + 1)
+                .toArray();
     }
 }
+
+
+
