@@ -17,33 +17,33 @@ public class MockExam4 {
             {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}
     };
 
-    private int getPicked(int person, int problem) {
-        int[] personNo = RULES[person];
-        int index = problem % personNo.length;
-        return personNo[index];
+    private int getPick(int student, int problem) {
+        int[] answerSet = RULES[student];
+        int index = problem % answerSet.length;
+        return answerSet[index];
     }
 
     public int[] solution(int[] answers) {
-        int[] corrects = new int[3];
+        int[] picks = new int[3];
         int max = 0;
 
-        for ( int problem = 0; problem < answers.length; problem++) {
+        for (int problem = 0; problem < answers.length; problem ++) {
             int answer = answers[problem];
 
-            for (int person = 0; person < 3; person++) {
-                int picked = getPicked(person, problem);
+            for (int student = 0; student < 3; student ++) {
+                int score = getPick(student, problem);
 
-                if (picked == answer) {
-                    if (++corrects[person] > max) {
-                        max = corrects[person];
+                if (answer == score) {
+                    if (++picks[student] > max) {
+                        max = picks[student];
                     }
                 }
             }
         }
 
-        final int maxCorrects = max;
+        final int maxCorrects= max;
         return IntStream.range(0, 3)
-                .filter( i -> corrects[i] == maxCorrects)
+                .filter(i -> picks[i] == maxCorrects)
                 .map(i -> i + 1)
                 .toArray();
     }
