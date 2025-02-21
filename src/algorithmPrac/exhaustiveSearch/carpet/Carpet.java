@@ -19,18 +19,19 @@ public class Carpet {
 //   • 노란색 격자의 수 y이low는 1 이상 2,000,000 이하인 자연수입니다.
 //   • 카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.
     int[] solution(int brown, int yellow) {
-        for (int width = 3; width <= 5000; width++) {
-            for ( int height = 3; height <= width; height++) {
-              int boundary = (width + height -2) * 2;
-              int center = width * height - boundary;
+            int[] answer = new int[2];
 
-              if (brown == boundary && yellow == center) {
-                 return new int[]{width, height};
-              }
+            for ( int width = 3; width <= 5000; width++) {
+                for (int height = 3; height <= width; height++) {
+                    int boundary = (width + height -2) * 2;
+                    int center = (width * height) - boundary;
+
+                    if (brown == boundary && yellow == center) {
+                        answer[0] = width;
+                        answer[1] = height;
+                    }
                 }
             }
-        return null;
+            return answer;
         }
-
-
 }
