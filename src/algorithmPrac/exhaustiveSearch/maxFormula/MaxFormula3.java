@@ -62,6 +62,7 @@ public long solution(String expression) {
            max = value;
        }
    }
+   
    return max;
 }
 }
